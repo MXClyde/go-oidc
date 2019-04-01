@@ -120,9 +120,11 @@ func NewProvider(ctx context.Context, issuer string) (*Provider, error) {
 		return nil, fmt.Errorf("oidc: failed to decode provider discovery object: %v", err)
 	}
 
-	if p.Issuer != issuer {
-		return nil, fmt.Errorf("oidc: issuer did not match the issuer returned by provider, expected %q got %q", issuer, p.Issuer)
-	}
+	//CWA 01/04/2019: removed this check to force usage of Issuer.
+	//if p.Issuer != issuer {
+	//	return nil, fmt.Errorf("oidc: issuer did not match the issuer returned by provider, expected %q got %q", issuer, p.Issuer)
+	//}
+	
 	return &Provider{
 		issuer:       p.Issuer,
 		authURL:      p.AuthURL,
